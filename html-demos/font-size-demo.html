@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="github-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fine Use - Font Size Testing Demo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../components/css/fine-use-core.css">
+  
+  <!-- 10 Core Themes -->
+  <link rel="stylesheet" href="../themes/github-dark.css">
+  <link rel="stylesheet" href="../themes/github-light.css">
+  <link rel="stylesheet" href="../themes/amber.css">
+  <link rel="stylesheet" href="../themes/gruvbox.css">
+  <link rel="stylesheet" href="../themes/monochrome.css">
+  <link rel="stylesheet" href="../themes/monokai.css">
+  <link rel="stylesheet" href="../themes/newspaper.css">
+  <link rel="stylesheet" href="../themes/sakura.css">
+  <link rel="stylesheet" href="../themes/synthwave.css">
+  <link rel="stylesheet" href="../themes/vt220.css">
+  
+  <style>
+    .demo-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-xxl);
+    }
+    
+    .demo-section {
+      margin-bottom: var(--space-xxl);
+    }
+    
+    /* Font Size Display Grid */
+    .font-size-grid {
+      display: grid;
+      grid-template-columns: 8rem auto auto;
+      gap: var(--space-lg);
+      border: var(--border-thin) solid var(--fine-use-border);
+      background-color: var(--fine-use-surface);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .size-header {
+      font-weight: 700;
+      color: var(--fine-use-text);
+      background-color: var(--fine-use-border);
+      padding: var(--space-md);
+      text-transform: uppercase;
+    }
+    
+    .size-label {
+      font-size: var(--text-sm);
+      color: var(--fine-use-comment);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    
+    .size-example {
+      color: var(--fine-use-text);
+      display: flex;
+      align-items: center;
+    }
+    
+    .size-value {
+      font-size: var(--text-sm);
+      color: var(--fine-use-accent);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Live Adjustment Controls */
+    .font-controls {
+      border: var(--border-thick) solid var(--fine-use-border);
+      background-color: var(--fine-use-surface);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .control-group {
+      display: grid;
+      grid-template-columns: 12rem 20rem 8rem 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      align-items: center;
+    }
+    
+    .control-label {
+      font-weight: 700;
+      color: var(--fine-use-text);
+      text-transform: uppercase;
+    }
+    
+    .font-slider {
+      width: 100%;
+      height: 2rem;
+      background-color: var(--fine-use-bg);
+      border: var(--border-thin) solid var(--fine-use-border);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+    }
+    
+    .font-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: var(--fine-use-accent);
+      border: var(--border-thin) solid var(--fine-use-border);
+      cursor: pointer;
+    }
+    
+    .font-slider::-moz-range-thumb {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: var(--fine-use-accent);
+      border: var(--border-thin) solid var(--fine-use-border);
+      cursor: pointer;
+      border-radius: 0;
+    }
+    
+    .current-value {
+      font-weight: 700;
+      color: var(--fine-use-accent);
+      font-size: var(--text-lg);
+    }
+    
+    .reset-button {
+      padding: var(--space-sm) var(--space-md);
+      border: var(--border-thin) solid var(--fine-use-border);
+      background-color: var(--fine-use-bg);
+      color: var(--fine-use-text);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition-fast);
+    }
+    
+    .reset-button:hover {
+      background-color: var(--fine-use-accent);
+      color: var(--fine-use-bg);
+    }
+    
+    /* Sample Content Areas */
+    .content-sample {
+      border: var(--border-thin) solid var(--fine-use-border);
+      background-color: var(--fine-use-bg);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .sample-interface {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    
+    /* CSS Export Area */
+    .css-export {
+      border: var(--border-thick) solid var(--fine-use-accent);
+      background-color: var(--fine-use-bg);
+      padding: var(--space-xl);
+      margin-top: var(--space-xxl);
+    }
+    
+    .css-code {
+      background-color: var(--fine-use-surface);
+      border: var(--border-thin) solid var(--fine-use-border);
+      padding: var(--space-lg);
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+      color: var(--fine-use-text);
+      white-space: pre;
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+      <span class="theme-label">THEME:</span>
+      <select id="theme-select" class="theme-dropdown">
+        <option value="github-dark" selected>Dark Mode</option>
+        <option value="github-light">Light Mode</option>
+        <option value="amber">Amber Terminal</option>
+        <option value="gruvbox">Gruvbox</option>
+        <option value="monochrome">Monochrome</option>
+        <option value="monokai">Monokai</option>
+        <option value="newspaper">Newspaper</option>
+        <option value="sakura">Sakura</option>
+        <option value="synthwave">Synthwave</option>
+        <option value="vt220">VT220</option>
+      </select>
+    </div>
+
+    <!-- Header -->
+    <header class="demo-section">
+      <h1 class="fine-use-h1">FONT SIZE TESTING & ADJUSTMENT</h1>
+      <div class="flex items-center gap-8 text-lg">
+        <span class="text-comment">PURPOSE:</span>
+        <span class="text-accent">FONT SIZE CALIBRATION</span>
+        <span class="text-comment">STATUS:</span>
+        <span class="text-success">LIVE ADJUSTMENT</span>
+      </div>
+    </header>
+
+    <!-- Current Font Size Display -->
+    <section class="demo-section">
+      <h2 class="fine-use-h2">CURRENT FONT SIZE SCALE</h2>
+      
+      <div class="font-size-grid">
+        <div class="size-header">SIZE</div>
+        <div class="size-header">EXAMPLE TEXT</div>
+        <div class="size-header">PIXEL VALUE</div>
+        
+        <div class="size-label">XS</div>
+        <div class="size-example" style="font-size: var(--text-xs);">Small labels and metadata</div>
+        <div class="size-value" id="xs-value">12px</div>
+        
+        <div class="size-label">SM</div>
+        <div class="size-example" style="font-size: var(--text-sm);">Secondary text and captions</div>
+        <div class="size-value" id="sm-value">14px</div>
+        
+        <div class="size-label">MD</div>
+        <div class="size-example" style="font-size: var(--text-md);">Body text and standard content</div>
+        <div class="size-value" id="md-value">16px</div>
+        
+        <div class="size-label">LG</div>
+        <div class="size-example" style="font-size: var(--text-lg);">Prominent text and labels</div>
+        <div class="size-value" id="lg-value">18px</div>
+        
+        <div class="size-label">H4</div>
+        <div class="size-example" style="font-size: var(--text-xl); font-weight: 600; text-transform: uppercase;">Header Level 4 - Component Titles</div>
+        <div class="size-value" id="xl-value">20px</div>
+        
+        <div class="size-label">H3</div>
+        <div class="size-example" style="font-size: var(--text-2xl); font-weight: 600; text-transform: uppercase;">Header Level 3 - Section Headers</div>
+        <div class="size-value" id="2xl-value">24px</div>
+        
+        <div class="size-label">H2</div>
+        <div class="size-example" style="font-size: var(--text-3xl); font-weight: 700; text-transform: uppercase;">Header Level 2 - Major Sections</div>
+        <div class="size-value" id="3xl-value">30px</div>
+        
+        <div class="size-label">H1</div>
+        <div class="size-example" style="font-size: var(--text-4xl); font-weight: 800; text-transform: uppercase;">Header Level 1 - Page Title</div>
+        <div class="size-value" id="4xl-value">36px</div>
+      </div>
+    </section>
+
+    <!-- Live Font Adjustment Controls -->
+    <section class="demo-section">
+      <h2 class="fine-use-h2">LIVE FONT SIZE ADJUSTMENT</h2>
+      
+      <div class="font-controls">
+        <h3 class="fine-use-h3">ADJUST FONT SIZES IN REAL-TIME</h3>
+        
+        <div class="control-group">
+          <div class="control-label">EXTRA SMALL</div>
+          <input type="range" class="font-slider" id="xs-slider" min="8" max="16" value="12" step="0.5">
+          <div class="current-value" id="xs-current">12px</div>
+          <button class="reset-button" onclick="resetSize('xs', 12)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">SMALL</div>
+          <input type="range" class="font-slider" id="sm-slider" min="10" max="18" value="14" step="0.5">
+          <div class="current-value" id="sm-current">14px</div>
+          <button class="reset-button" onclick="resetSize('sm', 14)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">MEDIUM (BASE)</div>
+          <input type="range" class="font-slider" id="md-slider" min="12" max="20" value="16" step="0.5">
+          <div class="current-value" id="md-current">16px</div>
+          <button class="reset-button" onclick="resetSize('md', 16)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">LARGE</div>
+          <input type="range" class="font-slider" id="lg-slider" min="14" max="24" value="18" step="0.5">
+          <div class="current-value" id="lg-current">18px</div>
+          <button class="reset-button" onclick="resetSize('lg', 18)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">HEADER 4 (H4)</div>
+          <input type="range" class="font-slider" id="xl-slider" min="16" max="28" value="20" step="0.5">
+          <div class="current-value" id="xl-current">20px</div>
+          <button class="reset-button" onclick="resetSize('xl', 20)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">HEADER 3 (H3)</div>
+          <input type="range" class="font-slider" id="2xl-slider" min="18" max="32" value="24" step="0.5">
+          <div class="current-value" id="2xl-current">24px</div>
+          <button class="reset-button" onclick="resetSize('2xl', 24)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">HEADER 2 (H2)</div>
+          <input type="range" class="font-slider" id="3xl-slider" min="24" max="40" value="30" step="0.5">
+          <div class="current-value" id="3xl-current">30px</div>
+          <button class="reset-button" onclick="resetSize('3xl', 30)">RESET</button>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-label">HEADER 1 (H1)</div>
+          <input type="range" class="font-slider" id="4xl-slider" min="28" max="48" value="36" step="0.5">
+          <div class="current-value" id="4xl-current">36px</div>
+          <button class="reset-button" onclick="resetSize('4xl', 36)">RESET</button>
+        </div>
+        
+        <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-lg);">
+          <button class="fine-use-button" data-variant="primary" onclick="resetAllSizes()">
+            RESET ALL TO DEFAULTS
+          </button>
+          <button class="fine-use-button" onclick="exportCSS()">
+            EXPORT CUSTOM CSS
+          </button>
+          <button class="fine-use-button" data-variant="info" onclick="savePreset()">
+            SAVE AS PRESET
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sample Interface -->
+    <section class="demo-section">
+      <h2 class="fine-use-h2">INTERFACE PREVIEW</h2>
+      
+      <div class="content-sample">
+        <h3 class="fine-use-h3">SAMPLE DASHBOARD INTERFACE</h3>
+        
+        <div class="sample-interface">
+          <!-- System Status -->
+          <div class="fine-use-component">
+            <h4 class="fine-use-h4">SYSTEM STATUS</h4>
+            <div style="font-size: var(--text-lg); margin-bottom: var(--space-md);">
+              <div style="color: var(--fine-use-success);">● ONLINE</div>
+            </div>
+            <div style="font-size: var(--text-md); color: var(--fine-use-comment); margin-bottom: var(--space-sm);">
+              Uptime: 99.9%
+            </div>
+            <div style="font-size: var(--text-sm); color: var(--fine-use-comment);">
+              Last restart: 2 days ago
+            </div>
+          </div>
+          
+          <!-- Metrics -->
+          <div class="fine-use-component">
+            <h4 class="fine-use-h4">PERFORMANCE</h4>
+            <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--fine-use-accent); margin-bottom: var(--space-sm);">
+              67%
+            </div>
+            <div style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">
+              CPU Usage
+            </div>
+            <div style="font-size: var(--text-sm); color: var(--fine-use-comment);">
+              Normal operation
+            </div>
+          </div>
+          
+          <!-- Alerts -->
+          <div class="fine-use-component">
+            <h4 class="fine-use-h4">ALERTS</h4>
+            <div style="font-size: var(--text-lg); color: var(--fine-use-warning); margin-bottom: var(--space-sm);">
+              ⚠ WARNING
+            </div>
+            <div style="font-size: var(--text-md); margin-bottom: var(--space-sm);">
+              High memory usage detected
+            </div>
+            <div style="font-size: var(--text-xs); color: var(--fine-use-comment);">
+              12:34:56 GMT
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Terminal Sample -->
+      <div class="content-sample">
+        <h3 class="fine-use-h3">TERMINAL INTERFACE WITH BOXED LABELS</h3>
+        <div style="background-color: #000000; border: var(--border-thin) solid var(--fine-use-border); padding: var(--space-lg); font-family: 'Fira Code' !important; font-weight: 400; font-size: 14px; line-height: 1.4;">
+          <div style="color: var(--fine-use-text); margin-bottom: var(--space-sm); font-family: 'Fira Code' !important;">
+            <span style="color: #50fa7b; font-family: 'Fira Code' !important;">root@system</span><span style="color: #f8f8f2; font-family: 'Fira Code' !important;">:~$</span> <span style="color: #f8f8f2; font-family: 'Fira Code' !important;">tail -f /var/log/system.log</span>
+          </div>
+          
+          <!-- Beautiful boxed log entries - MUCH SMALLER -->
+          <div style="margin-bottom: 4px; padding: 4px; border-left: 3px solid #58a6ff; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: 'Fira Code' !important;">
+            <span style="color: #6272a4; font-family: 'Fira Code' !important;">[10:24:17]</span>
+            <span style="display: inline-block; padding: 1px 4px; font-weight: 700; font-size: 9px; text-transform: uppercase; background-color: #50fa7b; color: #000000; line-height: 1; font-family: 'Fira Code' !important;">INFO</span>
+            <span style="color: #f8f8f2; font-family: 'Fira Code' !important;">Service mesh configuration updated</span>
+          </div>
+          
+          <div style="margin-bottom: 4px; padding: 4px; border-left: 3px solid #f1fa8c; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: 'Fira Code' !important;">
+            <span style="color: #6272a4; font-family: 'Fira Code' !important;">[10:24:23]</span>
+            <span style="display: inline-block; padding: 1px 4px; font-weight: 700; font-size: 9px; text-transform: uppercase; background-color: #f1fa8c; color: #000000; line-height: 1; font-family: 'Fira Code' !important;">WARN</span>
+            <span style="color: #f8f8f2; font-family: 'Fira Code' !important;">Memory threshold exceeded</span>
+          </div>
+          
+          <div style="margin-bottom: 4px; padding: 4px; border-left: 3px solid #ff5555; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: 'Fira Code' !important;">
+            <span style="color: #6272a4; font-family: 'Fira Code' !important;">[10:24:31]</span>
+            <span style="display: inline-block; padding: 1px 4px; font-weight: 700; font-size: 9px; text-transform: uppercase; background-color: #ff5555; color: #ffffff; line-height: 1; font-family: 'Fira Code' !important;">ERROR</span>
+            <span style="color: #f8f8f2; font-family: 'Fira Code' !important;">Database connection failed</span>
+          </div>
+          
+          <div style="margin-bottom: 4px; padding: 4px; border-left: 3px solid #58a6ff; font-size: 13px; display: flex; align-items: center; gap: 8px; font-family: 'Fira Code' !important;">
+            <span style="color: #6272a4; font-family: 'Fira Code' !important;">[10:24:39]</span>
+            <span style="display: inline-block; padding: 1px 4px; font-weight: 700; font-size: 9px; text-transform: uppercase; background-color: #58a6ff; color: #000000; line-height: 1; font-family: 'Fira Code' !important;">DEBUG</span>
+            <span style="color: #f8f8f2; font-family: 'Fira Code' !important;">Connection pool exhausted</span>
+          </div>
+          
+          <div style="color: #f8f8f2; font-family: 'Fira Code' !important; font-size: 14px;">
+            <span style="color: #50fa7b; font-family: 'Fira Code' !important;">root@system</span><span style="color: #f8f8f2; font-family: 'Fira Code' !important;">:~$</span> <span style="animation: blink 1s infinite; color: #f8f8f2; font-family: 'Fira Code' !important;">█</span>
+          </div>
+        </div>
+        
+        <div style="margin-top: var(--space-lg); padding: var(--space-lg); background-color: var(--fine-use-border); font-size: var(--text-sm); color: var(--fine-use-comment);">
+          ✨ <strong>Boxed Terminal Labels:</strong> These beautiful status badges use the Fine Use log-level system with perfect typography and colors that adapt to all themes!
+        </div>
+        
+        <!-- FIRA CODE TEST SECTION -->
+        <div style="margin-top: var(--space-lg); padding: var(--space-lg); background-color: var(--fine-use-surface); border: var(--border-thin) solid var(--fine-use-accent);">
+          <h4 style="color: var(--fine-use-accent); margin-bottom: var(--space-md); text-transform: uppercase;">FIRA CODE FONT TEST</h4>
+          <div style="font-family: 'Fira Code', monospace !important; font-size: var(--text-lg); color: var(--fine-use-text); line-height: 1.5;">
+            <div>Normal text: The quick brown fox</div>
+            <div>Ligatures: != === => <- -> >= <=</div>
+            <div>Terminal: root@system:~$ ps aux | grep node</div>
+            <div>Numbers: 0123456789 (should look distinctive)</div>
+          </div>
+          <p style="font-size: var(--text-xs); color: var(--fine-use-comment); margin-top: var(--space-sm);">
+            If you see distinct ligatures (arrows, equal signs) and the zero has a slash, Fira Code is working!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS Export -->
+    <div class="css-export">
+      <h2 class="fine-use-h2">CUSTOM CSS EXPORT</h2>
+      <p style="color: var(--fine-use-comment); margin-bottom: var(--space-lg);">
+        Copy this CSS to override the default Fine Use font sizes with your custom values:
+      </p>
+      <div class="css-code" id="css-output">
+/* Fine Use Custom Font Sizes - Semantic Headers */
+:root {
+  --text-xs: 0.75rem;    /* 12px - Small labels */
+  --text-sm: 0.875rem;   /* 14px - Secondary text */
+  --text-md: 1rem;       /* 16px - Body text */
+  --text-lg: 1.125rem;   /* 18px - Prominent text */
+  --text-xl: 1.25rem;    /* 20px - Header 4 (H4) */
+  --text-2xl: 1.5rem;    /* 24px - Header 3 (H3) */
+  --text-3xl: 1.875rem;  /* 30px - Header 2 (H2) */
+  --text-4xl: 2.25rem;   /* 36px - Header 1 (H1) */
+}
+
+/* Fine Use requires Fira Code ONLY */
+* {
+  font-family: 'Fira Code' !important;
+}
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Theme management
+    const themeSelect = document.getElementById('theme-select');
+    themeSelect.addEventListener('change', (e) => {
+      document.documentElement.setAttribute('data-theme', e.target.value);
+    });
+
+    // Font size management
+    const fontSizes = {
+      xs: { default: 12, slider: null },
+      sm: { default: 14, slider: null },
+      md: { default: 16, slider: null },
+      lg: { default: 18, slider: null },
+      xl: { default: 20, slider: null },
+      '2xl': { default: 24, slider: null },
+      '3xl': { default: 30, slider: null },
+      '4xl': { default: 36, slider: null }
+    };
+
+    // Initialize sliders
+    Object.keys(fontSizes).forEach(size => {
+      const slider = document.getElementById(`${size}-slider`);
+      fontSizes[size].slider = slider;
+      
+      slider.addEventListener('input', (e) => {
+        updateFontSize(size, parseFloat(e.target.value));
+      });
+    });
+
+    function updateFontSize(size, value) {
+      // Update CSS custom property
+      document.documentElement.style.setProperty(`--text-${size}`, `${value}px`);
+      
+      // Update display values
+      document.getElementById(`${size}-current`).textContent = `${value}px`;
+      document.getElementById(`${size}-value`).textContent = `${value}px`;
+      
+      // Update CSS export
+      updateCSSExport();
+    }
+
+    function resetSize(size, defaultValue) {
+      const slider = fontSizes[size].slider;
+      slider.value = defaultValue;
+      updateFontSize(size, defaultValue);
+    }
+
+    function resetAllSizes() {
+      Object.keys(fontSizes).forEach(size => {
+        resetSize(size, fontSizes[size].default);
+      });
+    }
+
+    function updateCSSExport() {
+      const css = `/* Fine Use Custom Font Sizes */
+:root {
+  --text-xs: ${document.getElementById('xs-slider').value}px;
+  --text-sm: ${document.getElementById('sm-slider').value}px;
+  --text-md: ${document.getElementById('md-slider').value}px;
+  --text-lg: ${document.getElementById('lg-slider').value}px;
+  --text-xl: ${document.getElementById('xl-slider').value}px;
+  --text-2xl: ${document.getElementById('2xl-slider').value}px;
+  --text-3xl: ${document.getElementById('3xl-slider').value}px;
+  --text-4xl: ${document.getElementById('4xl-slider').value}px;
+}`;
+      
+      document.getElementById('css-output').textContent = css;
+    }
+
+    function exportCSS() {
+      const css = document.getElementById('css-output').textContent;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(css).then(() => {
+        alert('CSS copied to clipboard!');
+      }).catch(() => {
+        // Fallback - show in modal or prompt
+        prompt('Copy this CSS:', css);
+      });
+    }
+
+    function savePreset() {
+      const preset = {
+        name: prompt('Preset name:') || `Custom-${Date.now()}`,
+        sizes: {}
+      };
+      
+      Object.keys(fontSizes).forEach(size => {
+        preset.sizes[size] = parseFloat(document.getElementById(`${size}-slider`).value);
+      });
+      
+      localStorage.setItem(`fine-use-preset-${preset.name}`, JSON.stringify(preset));
+      alert(`Preset "${preset.name}" saved!`);
+    }
+
+    // Initialize display values
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCSSExport();
+    });
+
+    // Blink animation for cursor
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
