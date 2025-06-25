@@ -25,9 +25,12 @@
     "test-browser": "playwright test",
     "test-contrast": "node scripts/test-contrast.js",
     "lint": "eslint components/vanilla-js/ && stylelint components/css/",
+    "lint:fix": "eslint components/vanilla-js/ --fix && stylelint components/css/ --fix",
     "format": "prettier --write .",
     "validate": "npm run lint && npm run test",
     "release": "npm run validate && npm run build && npm publish",
+    "analyze": "npm run build && bundlesize",
+    "security-check": "npm audit --audit-level moderate",
     "theme:create": "node tools/theme-generator/create-theme.js",
     "theme:validate": "node tools/theme-generator/validate-theme.js",
     "docs:serve": "http-server documentation/ -p 3000",
@@ -61,8 +64,8 @@
   },
   "homepage": "https://fine-use.dev",
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "browserslist": [
     "Chrome >= 90",
@@ -71,27 +74,28 @@
     "Edge >= 90"
   ],
   "devDependencies": {
-    "@axe-core/cli": "^4.8.0",
-    "@playwright/test": "^1.40.0",
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-terser": "^0.4.0",
-    "autoprefixer": "^10.4.0",
-    "cssnano": "^6.0.0",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.0.0",
-    "http-server": "^14.1.0",
-    "postcss": "^8.4.0",
+    "@axe-core/cli": "^4.10.0",
+    "@playwright/test": "^1.48.0",
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "autoprefixer": "^10.4.20",
+    "bundlesize": "^0.18.1",
+    "cssnano": "^7.0.6",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "http-server": "^14.1.1",
+    "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
-    "prettier": "^3.0.0",
-    "rollup": "^4.0.0",
-    "stylelint": "^15.0.0",
-    "stylelint-config-standard": "^34.0.0",
-    "typescript": "^5.0.0"
+    "prettier": "^3.3.3",
+    "rollup": "^4.24.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1",
+    "typescript": "^5.6.2"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -136,5 +140,11 @@
       "safari >= 14",
       "edge >= 90"
     ]
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "dist/fine-use.min.css",
+      "maxSize": "50 kB"
+    }
+  ]
 }

@@ -1,0 +1,110 @@
+{
+  "themeConfig": {
+    "version": "1.0.0",
+    "baseTheme": "fine-use-core",
+    "industries": {
+      "financial": {
+        "name": "Financial Professional",
+        "description": "Clean, trustworthy design for financial applications",
+        "primaryColor": "#1e40af",
+        "secondaryColor": "#059669", 
+        "accentColor": "#dc2626",
+        "backgroundColor": "#f8fafc",
+        "surfaceColor": "#ffffff",
+        "textColor": "#1f2937",
+        "fonts": {
+          "primary": "Inter",
+          "monospace": "JetBrains Mono"
+        },
+        "borderRadius": "4px",
+        "shadowIntensity": "subtle"
+      },
+      "healthcare": {
+        "name": "Healthcare Professional", 
+        "description": "Calming, accessible design for healthcare applications",
+        "primaryColor": "#0d9488",
+        "secondaryColor": "#7c3aed",
+        "accentColor": "#ea580c", 
+        "backgroundColor": "#f0fdf4",
+        "surfaceColor": "#ffffff",
+        "textColor": "#374151",
+        "fonts": {
+          "primary": "Inter",
+          "monospace": "JetBrains Mono"
+        },
+        "borderRadius": "6px",
+        "shadowIntensity": "soft"
+      },
+      "construction": {
+        "name": "Construction Professional",
+        "description": "Robust, industrial design for construction applications", 
+        "primaryColor": "#ea580c",
+        "secondaryColor": "#78716c",
+        "accentColor": "#facc15",
+        "backgroundColor": "#fefce8", 
+        "surfaceColor": "#ffffff",
+        "textColor": "#292524",
+        "fonts": {
+          "primary": "Inter",
+          "monospace": "JetBrains Mono"
+        },
+        "borderRadius": "2px",
+        "shadowIntensity": "strong"
+      },
+      "real-estate": {
+        "name": "Real Estate Professional",
+        "description": "Elegant, premium design for real estate applications",
+        "primaryColor": "#7c2d12", 
+        "secondaryColor": "#a21caf",
+        "accentColor": "#16a34a",
+        "backgroundColor": "#fef7f0",
+        "surfaceColor": "#ffffff", 
+        "textColor": "#431407",
+        "fonts": {
+          "primary": "Inter",
+          "monospace": "JetBrains Mono"
+        },
+        "borderRadius": "8px",
+        "shadowIntensity": "elegant"
+      },
+      "community": {
+        "name": "Community Management",
+        "description": "Friendly, approachable design for community applications",
+        "primaryColor": "#2563eb",
+        "secondaryColor": "#7c3aed", 
+        "accentColor": "#06b6d4",
+        "backgroundColor": "#eff6ff",
+        "surfaceColor": "#ffffff",
+        "textColor": "#1e293b",
+        "fonts": {
+          "primary": "Inter", 
+          "monospace": "JetBrains Mono"
+        },
+        "borderRadius": "10px",
+        "shadowIntensity": "friendly"
+      }
+    },
+    "commonElements": {
+      "transitions": {
+        "fast": "150ms ease-in-out",
+        "normal": "250ms ease-in-out", 
+        "slow": "350ms ease-in-out"
+      },
+      "spacing": {
+        "xs": "0.25rem",
+        "sm": "0.5rem",
+        "md": "1rem", 
+        "lg": "1.5rem",
+        "xl": "2rem",
+        "2xl": "3rem"
+      },
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px", 
+        "xl": "1280px",
+        "2xl": "1536px"
+      }
+    }
+  }
+}

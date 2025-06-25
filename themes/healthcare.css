@@ -1,0 +1,90 @@
+/* Healthcare Theme - Calming and Accessible */
+:root {
+  --primary-color: #0d9488;
+  --primary-hover: #0f766e;
+  --secondary-color: #7c3aed;
+  --secondary-hover: #6d28d9;
+  --accent-color: #ea580c;
+  --accent-hover: #c2410c;
+  
+  --background-color: #f0fdf4;
+  --surface-color: #ffffff;
+  --surface-hover: #f7fee7;
+  
+  --text-primary: #374151;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  
+  --border-color: #d1fae5;
+  --border-hover: #bbf7d0;
+  
+  --success-color: #059669;
+  --warning-color: #d97706;
+  --error-color: #dc2626;
+  --info-color: #0d9488;
+  
+  --shadow-soft: 0 4px 6px -1px rgba(13, 148, 136, 0.1), 0 2px 4px -1px rgba(13, 148, 136, 0.06);
+  --shadow-moderate: 0 10px 15px -3px rgba(13, 148, 136, 0.1), 0 4px 6px -2px rgba(13, 148, 136, 0.05);
+  
+  --border-radius: 6px;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+}
+
+/* Component Overrides */
+.btn {
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  transition: var(--transition-normal);
+}
+
+.card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.input {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-family);
+}
+
+/* Healthcare-specific elements */
+.shift-card {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.shift-status-active {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.shift-status-break {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.shift-status-completed {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.patient-priority-high {
+  border-left: 4px solid var(--error-color);
+}
+
+.patient-priority-medium {
+  border-left: 4px solid var(--warning-color);
+}
+
+.patient-priority-low {
+  border-left: 4px solid var(--success-color);
+}
