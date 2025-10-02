@@ -2,9 +2,11 @@
 
 React component library for building terminal-style user interfaces.
 
-[![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react)](https://reactjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/wesellis/TECH-Fine-Use-Design-System-React-55-Terminal-UI-Components?style=flat-square)](https://github.com/wesellis/TECH-Fine-Use-Design-System-React-55-Terminal-UI-Components/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/wesellis/TECH-Fine-Use-Design-System-React-55-Terminal-UI-Components?style=flat-square)](https://github.com/wesellis/TECH-Fine-Use-Design-System-React-55-Terminal-UI-Components/commits)
 
 ## Overview
 
